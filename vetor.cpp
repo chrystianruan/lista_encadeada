@@ -5,8 +5,7 @@
 
 template <class T>
 Vetor<T>::Vetor() {
-    Node<T> node(NULL);
-    this->firstElement = &node;
+    this->firstElement = nullptr;
     this->lastElement = nullptr;
 }
 
@@ -22,7 +21,7 @@ bool Vetor<T>::add(T i_) {
          Node<T> * newNode = new Node<T>(i_);
 
          if (this->lastElement == nullptr) {
-            this->firstElement->setNextNode(newNode);
+            this->firstElement = newNode;
             this->lastElement = newNode;
          } else {
              this->lastElement->setNextNode(newNode);
@@ -38,7 +37,7 @@ bool Vetor<T>::add(T i_) {
 
 template <class T>
 void Vetor<T>::show() {
-    Node<T> * aux = new Node(this->firstElement->getData(), this->firstElement->getNextNode());
+    Node<T> * aux = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
     cout << "{ ";
     while (aux->getNextNode() != nullptr) {
         cout << aux->getData() << " "  ;
@@ -63,6 +62,27 @@ int Vetor<T>::findAmount(int amount, Node<T> node) {
     }
 
     return findAmount(amount+1, *node.getNextNode());
+}
+
+template <class T> 
+T Vetor<T>::at(int i_) {
+    Node<T> * aux = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
+    T data;
+
+    for (int i = 0; i <= i_; i++) {
+        if (aux == nullptr) {
+            throw "Índice não disponível";
+        } else {
+             if (i == i_) {
+                data = aux->getData();
+                break;
+            }
+            aux = aux->getNextNode();  
+        }
+    }
+
+    return data;
+
 }
 
 

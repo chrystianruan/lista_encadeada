@@ -21,7 +21,7 @@ class Vetor {
         bool add(T i_);
         // bool remove(int i);
         void show();
-        // T at(int i);
+        T at(int i);
         // bool sort ( func_compara );
 
 };

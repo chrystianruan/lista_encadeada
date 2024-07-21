@@ -81,13 +81,15 @@ int main() {
 		
 		// cout<<"---------FIM Teste STRINGS ---------"<<endl;
 
-		Vetor<float> v;
-		v.add(70.1);
-		v.add(20.5);
-		v.add(50.2);
-		v.add(10.4);
+		Vetor<int> v;
+		v.add(7);
+		v.add(20);
+		v.add(50);
+		v.add(10);
 		v.show();
 		cout << v.size() << endl;
+
+		cout << "O conteúdo do nó 2 é: " << v.at(1) << endl;
 		
 		
 		
