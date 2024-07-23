@@ -19,7 +19,7 @@ class Vetor {
         ~Vetor();
         int size();
         bool add(T i_);
-        // bool remove(int i);
+        bool remove(int i);
         void show();
         T at(int i);
         // bool sort ( func_compara );

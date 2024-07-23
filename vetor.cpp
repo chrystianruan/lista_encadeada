@@ -19,12 +19,13 @@ template <class T>
 bool Vetor<T>::add(T i_) {
     try {
          Node<T> * newNode = new Node<T>(i_);
+       
 
          if (this->lastElement == nullptr) {
             this->firstElement = newNode;
             this->lastElement = newNode;
          } else {
-             this->lastElement->setNextNode(newNode);
+             this->lastElement->setNextNode(newNode);   
              this->lastElement = newNode;
          }
 
@@ -77,11 +78,43 @@ T Vetor<T>::at(int i_) {
                 data = aux->getData();
                 break;
             }
-            aux = aux->getNextNode();  
         }
+        aux = aux->getNextNode();  
     }
 
     return data;
+
+}
+
+template <class T>
+bool Vetor<T>::remove(int _i) {
+    Node<T> * atual = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
+    Node<T> * previous; 
+    Node<T> * next;
+
+    if (_i == 0) {
+        this->firstElement = this->firstElement->getNextNode();
+        return true;
+    }
+
+    for (int i = 0; i <= _i; i++) {
+        cout << i << endl;
+        if (atual == nullptr) {
+            throw "Índice não disponível";
+        } else {
+            if (i == _i) {
+                std::string resposta =  previous->getNextNode() == nullptr ? "sim" : "não";
+                cout << "(antes de setar) proximo ponteiro é igual a null? " <<  resposta << endl;
+                previous->setNextNode(i == size()-1 ? nullptr : next);
+                resposta =  previous->getNextNode() == nullptr ? "sim" : "não";
+                cout << "(depois de setar) proximo ponteiro é igual a null? " <<  resposta << endl;
+                return true;
+            }
+        }
+        previous = atual;
+        atual = atual->getNextNode();
+        next = atual->getNextNode();  
+    }
 
 }
 

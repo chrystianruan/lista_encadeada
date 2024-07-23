@@ -82,22 +82,16 @@ int main() {
 		// cout<<"---------FIM Teste STRINGS ---------"<<endl;
 
 		Vetor<int> v;
-		v.add(7);
-		v.add(20);
-		v.add(50);
-		v.add(10);
+		v.add(1);
+		v.add(2);
+		v.add(3);
+		v.add(4);
+		v.add(5);
+		v.remove(4);
 		v.show();
 		cout << v.size() << endl;
 
-		cout << "O conteúdo do nó 2 é: " << v.at(1) << endl;
-		
-		
-		
-		// v.add(2);
-		// v.show();
-		// v.add(1);
-		// v.add(2);
-		// cout << v.size() << endl;
+		cout << "O conteúdo do nó 3 é: " << v.at(2) << endl;
 				
 		return 0;
 	}catch(const char* msg){

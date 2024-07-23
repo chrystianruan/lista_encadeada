@@ -25,7 +25,7 @@ void Node<T>::setData(T _data) {
 }
 
 template <typename T>
-Node<T>* Node<T>::getNextNode() {
+Node<T> * Node<T>::getNextNode() {
     return this->nextNode;
 }
 
