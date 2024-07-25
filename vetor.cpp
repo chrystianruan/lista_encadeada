@@ -20,13 +20,16 @@ bool Vetor<T>::add(T i_) {
     try {
          Node<T> * newNode = new Node<T>(i_);
        
-
-         if (this->lastElement == nullptr) {
+         if (this->firstElement == nullptr) {
             this->firstElement = newNode;
-            this->lastElement = newNode;
          } else {
-             this->lastElement->setNextNode(newNode);   
-             this->lastElement = newNode;
+            if (this->lastElement == nullptr) {
+                this->lastElement = newNode;
+                this->firstElement->setNextNode(newNode);
+            } else {
+                this->lastElement->setNextNode(newNode);   
+                this->lastElement = newNode;
+            }
          }
 
          return true;
@@ -88,34 +91,34 @@ T Vetor<T>::at(int i_) {
 
 template <class T>
 bool Vetor<T>::remove(int _i) {
-    Node<T> * atual = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
-    Node<T> * previous; 
-    Node<T> * next;
-
     if (_i == 0) {
         this->firstElement = this->firstElement->getNextNode();
         return true;
     }
 
+    Node<T> * atual = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
+    Node<T> * previous; 
+    Node<T> * next;
+
     for (int i = 0; i <= _i; i++) {
-        cout << i << endl;
-        if (atual == nullptr) {
+        if (atual == nullptr || i > size()-1) {
             throw "Índice não disponível";
         } else {
             if (i == _i) {
-                std::string resposta =  previous->getNextNode() == nullptr ? "sim" : "não";
-                cout << "(antes de setar) proximo ponteiro é igual a null? " <<  resposta << endl;
-                previous->setNextNode(i == size()-1 ? nullptr : next);
-                resposta =  previous->getNextNode() == nullptr ? "sim" : "não";
-                cout << "(depois de setar) proximo ponteiro é igual a null? " <<  resposta << endl;
+                bool ultimoElemento = i == size()-1;
+                previous->setNextNode(ultimoElemento ? nullptr : next);
+                if (ultimoElemento) {
+                    this->lastElement = previous; 
+                }
                 return true;
             }
         }
         previous = atual;
         atual = atual->getNextNode();
-        next = atual->getNextNode();  
+        next = atual->getNextNode();
+      
     }
-
+    
 }
 
 
