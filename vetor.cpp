@@ -91,30 +91,27 @@ T Vetor<T>::at(int i_) {
 template <class T>
 bool Vetor<T>::remove(int _i) {
     if (_i == 0) {
-        this->firstElement = this->firstElement->getNextNode();
+        Node<T> * nextOfFirst = this->firstElement->getNextNode();
+        delete this->firstElement;  
+        this->firstElement = nextOfFirst; 
         return true;
     }
-
-    Node<T> * atual = this->firstElement;
     Node<T> * previous; 
-    Node<T> * next;
+    Node<T> * atual = this->firstElement;
+
 
     for (int i = 0; i <= _i; i++) {
         if (atual == nullptr || i > size()-1) {
             throw "Índice não disponível";
         } else {
             if (i == _i) {
-                bool ultimoElemento = i == size()-1;
-                previous->setNextNode(ultimoElemento ? nullptr : next);
-                if (ultimoElemento) {
-                    this->lastElement = previous; 
-                }
+                previous->setNextNode(atual->getNextNode());
+                delete atual;
                 return true;
             }
         }
         previous = atual;
         atual = atual->getNextNode();
-        next = atual->getNextNode();
       
     }
 
