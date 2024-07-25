@@ -41,13 +41,12 @@ bool Vetor<T>::add(T i_) {
 
 template <class T>
 void Vetor<T>::show() {
-    Node<T> * aux = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
+    Node<T> * aux = this->firstElement;
     cout << "{ ";
-    while (aux->getNextNode() != nullptr) {
+    while (aux != nullptr) {
         cout << aux->getData() << " "  ;
         aux = aux->getNextNode();
     }
-    cout << lastElement->getData() << " ";
     cout << "}" << endl;
 }
 
@@ -70,7 +69,7 @@ int Vetor<T>::findAmount(int amount, Node<T> node) {
 
 template <class T> 
 T Vetor<T>::at(int i_) {
-    Node<T> * aux = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
+    Node<T> * aux = this->firstElement;
     T data;
 
     for (int i = 0; i <= i_; i++) {
@@ -96,7 +95,7 @@ bool Vetor<T>::remove(int _i) {
         return true;
     }
 
-    Node<T> * atual = new Node<T>(this->firstElement->getData(), this->firstElement->getNextNode());
+    Node<T> * atual = this->firstElement;
     Node<T> * previous; 
     Node<T> * next;
 
@@ -118,6 +117,8 @@ bool Vetor<T>::remove(int _i) {
         next = atual->getNextNode();
       
     }
+
+    return false;
     
 }
 
