@@ -48,6 +48,7 @@ void Vetor<T>::show() {
         aux = aux->getNextNode();
     }
     cout << "}" << endl;
+    delete aux;
 }
 
 template <class T>
@@ -83,6 +84,8 @@ T Vetor<T>::at(int i_) {
         }
         aux = aux->getNextNode();  
     }
+
+    delete aux;
 
     return data;
 
