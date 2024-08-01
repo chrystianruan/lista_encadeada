@@ -53,8 +53,12 @@ void Vetor<T>::show() {
 
 template <class T>
 int Vetor<T>::size() {
-    Node<T> first = *this->firstElement;
+    if (this->firstElement->getNextNode() == nullptr) {
+        return 0;
+    }
+     Node<T> first = *this->firstElement;
     int size = findAmount(1, first);
+
 
     return size;
 } 
@@ -71,32 +75,27 @@ int Vetor<T>::findAmount(int amount, Node<T> node) {
 template <class T> 
 T Vetor<T>::at(int i_) {
     Node<T> * aux = this->firstElement;
-    T data;
+    int i = 0;
 
-    for (int i = 0; i <= i_; i++) {
-        if (aux == nullptr) {
-            throw "Índice não disponível";
-        } else {
-             if (i == i_) {
-                data = aux->getData();
-                break;
-            }
+    while (aux != nullptr) {
+        if (i == i_) {
+            return aux->getData();
         }
-        aux = aux->getNextNode();  
+        aux = aux->getNextNode();
+        i++;
     }
 
     delete aux;
 
-    return data;
+    return 0;
 
 }
 
-template <class T>
+template <typename T>
 bool Vetor<T>::remove(int _i) {
     if (_i == 0) {
-        Node<T> * nextOfFirst = this->firstElement->getNextNode();
-        delete this->firstElement;  
-        this->firstElement = nextOfFirst; 
+        this->firstElement = this->firstElement->getNextNode(); 
+        
         return true;
     }
     Node<T> * previous; 
@@ -120,6 +119,36 @@ bool Vetor<T>::remove(int _i) {
 
     return false;
     
+}
+
+template <class T>
+bool Vetor<T>::sort(bool (*func_compara) (T, T)) {
+    try {
+        int i, j; 
+        Node<T> * aux = this->firstElement;
+        Node<T> * previous = nullptr;
+        if (size() - 1) {
+            return false;
+        }
+        for (i = 0; i < size() - 1; i++) {
+            for (j = 0; j < size() - i - 1; j++) {
+                if (j == 0) {
+                    if (func_compara(this->firstElement->getData(), this->firstElement->getNextNode()->getData())) {
+                        cout << previous->getData() << endl;
+                    } 
+                } else {
+
+                }
+            }
+            previous = aux;
+            aux = aux->getNextNode();
+        }
+
+        return true;
+    } catch (int i) {
+        return false;
+    }
+
 }
 
 

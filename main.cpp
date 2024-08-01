@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
 #include "vetor.h" //Classe Vetor. Obrigatório
-#include <unistd.h>
+
+//adicionar demais arquivos .h/.cpp aqui.
+#include "funcoes.cpp" //Funções adicionais. Opcional
+
 using namespace std;
 
 /* Código exemplo. 
@@ -20,9 +23,9 @@ int main() {
 		f.add(3.3); //adiciona "21" no final do Vetor
 		f.show();
 
-		// cout<<endl<<"---Caso 3: Ordenando 3 elementos---"<<endl;
+		cout<<endl<<"---Caso 3: Ordenando 3 elementos---"<<endl;
 		// f.sort( (*comparar_int) );
-		// f.show();
+		f.show();
 	
 		cout<<endl<<"---Caso 4: Removento elemento da posição 2---"<<endl;
 		if (f.remove(2) ==true) cout<<"Removido"; else cout<<" Não Removido";
@@ -55,9 +58,9 @@ int main() {
 		s.add(string("c")); //adiciona "3" no final do Vetor
 		s.show();
 		
-		// cout<<endl<<"---Caso 3: Ordenando 4 elementos---"<<endl;
+		cout<<endl<<"---Caso 3: Ordenando 4 elementos---"<<endl;
 		// s.sort( (*comparar_string) );
-		// s.show();
+		s.show();
 		
 		cout<<endl<<"---Caso 4: Removento elemento da posição 2---"<<endl;
 		if (s.remove(2) ==true) cout<<"Removido"; else cout<<" Não Removido";
@@ -80,7 +83,7 @@ int main() {
 		s.show();	
 		
 		cout<<"---------FIM Teste STRINGS ---------"<<endl;
-	
+				
 		return 0;
 	}catch(const char* msg){
 		cout << msg << endl;
@@ -91,4 +94,3 @@ int main() {
 	return 0;
 	
 }
-
